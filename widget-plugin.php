@@ -18,7 +18,7 @@ class wp_qpost_plugin extends WP_Widget {
   }
 
   public static function wp_enqueue_scripts() {
-    wp_register_script('qpost', plugin_dir_url( __FILE__ ).'scripts/app.js', array('wp-api'), null, false);
+    wp_register_script('qpost', plugin_dir_url( __FILE__ ).'app.js', array('wp-api'), null, false);
     wp_register_style('qpost-css', plugin_dir_url( __FILE__ ).'style.css' );
     //wp_localize_script('qpost', 'wpQpostId', "qpost-".wp_qpost_plugin::makeRandStr(10));
     wp_enqueue_script('qpost');
