@@ -1,0 +1,12 @@
+.qpost-textarea {
+  height: 5em;
+}
+
+.qpost-button {
+}
+
+.qpost-button-box{
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+}

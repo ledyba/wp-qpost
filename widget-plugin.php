@@ -18,49 +18,29 @@ class wp_qpost_plugin extends WP_Widget {
   }
 
   public static function wp_enqueue_scripts() {
-    wp_enqueue_script('', 'wp-api');
-    wp_enqueue_script('qpost', plugin_dir_url( __FILE__ ).'scripts/app.js', null, null, false );
+    wp_register_script('qpost', plugin_dir_url( __FILE__ ).'scripts/app.js', array('wp-api'), null, false);
+    wp_register_style('qpost-css', plugin_dir_url( __FILE__ ).'style.css' );
+    //wp_localize_script('qpost', 'wpQpostId', "qpost-".wp_qpost_plugin::makeRandStr(10));
+    wp_enqueue_script('qpost');
+    wp_enqueue_style('qpost-css');
+  }
+
+  public static function makeRandStr($length) {
+    $str = array_merge(range('a', 'z'), range('0', '9'), range('A', 'Z'));
+    $r_str = null;
+    for ($i = 0; $i < $length; $i++) {
+        $r_str .= $str[rand(0, count($str) - 1)];
+    }
+    return $r_str;
   }
 
   // widget form creation
   function form($instance) {
-
-    // Check values
-    if( $instance) {
-         $title = esc_attr($instance['title']);
-         $text = esc_attr($instance['text']);
-         $textarea = esc_textarea($instance['textarea']);
-    } else {
-         $title = '';
-         $text = '';
-         $textarea = '';
-    }
-?>
-    <p>
-    <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title', 'wp_widget_plugin'); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-    </p>
-
-    <p>
-    <label for="<?php echo $this->get_field_id('text'); ?>"><?php _e('Text:', 'wp_widget_plugin'); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>" type="text" value="<?php echo $text; ?>" />
-    </p>
-
-    <p>
-    <label for="<?php echo $this->get_field_id('textarea'); ?>"><?php _e('Textarea:', 'wp_widget_plugin'); ?></label>
-    <textarea class="widefat" id="<?php echo $this->get_field_id('textarea'); ?>" name="<?php echo $this->get_field_name('textarea'); ?>"><?php echo $textarea; ?></textarea>
-    </p>
-<?php
   }
 
   // widget update
   function update($new_instance, $old_instance) {
-        $instance = $old_instance;
-        // Fields
-        $instance['title'] = strip_tags($new_instance['title']);
-        $instance['text'] = strip_tags($new_instance['text']);
-        $instance['textarea'] = strip_tags($new_instance['textarea']);
-       return $instance;
+    return $instance;
   }
 
   // display widget
@@ -72,19 +52,18 @@ class wp_qpost_plugin extends WP_Widget {
      $textarea = $instance['textarea'];
      echo $before_widget;
 
-     // Check if title is set
-     if ( $title ) {
-        echo $before_title . $title . $after_title;
-     }
-
-     // Check if text is set
-     if( $text ) {
-        echo '<p class="wp_widget_plugin_text">'.$text.'</p>';
-     }
-     // Check if textarea is set
-     if( $textarea ) {
-       echo '<p class="wp_widget_plugin_textarea">'.$textarea.'</p>';
-     }
+     echo $before_title . "Post Now" . $after_title;
+     $id = wp_qpost_plugin::makeRandStr(10);
+?>
+<div>
+  <div>
+    <textarea class="qpost-textarea" id="qpost-<?php echo $id; ?>"></textarea>
+  </div>
+  <div class="qpost-button-box">
+    <input class="qpost-button" type="button" onclick="wp_qpost('qpost-<?php echo $id; ?>');" value="post">
+  </div>
+</div>
+<?php
      echo $after_widget;
   }
 }
