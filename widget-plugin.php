@@ -45,22 +45,23 @@ class wp_qpost_plugin extends WP_Widget {
 
   // display widget
   function widget($args, $instance) {
-     extract( $args );
-     // these are the widget options
-     $title = apply_filters('widget_title', $instance['title']);
-     $text = $instance['text'];
-     $textarea = $instance['textarea'];
-     echo $before_widget;
+    if ( !is_user_logged_in() ) {
+      return;
+    }
+    extract( $args );
+    // these are the widget options
+    $title = apply_filters('widget_title', $instance['title']);
+    echo $before_widget;
 
-     echo $before_title . "Post Now" . $after_title;
-     $id = wp_qpost_plugin::makeRandStr(10);
+    //echo $before_title . "Post Now" . $after_title;
+    $id = wp_qpost_plugin::makeRandStr(10);
 ?>
 <div>
   <div>
     <textarea class="qpost-textarea" id="qpost-<?php echo $id; ?>"></textarea>
   </div>
   <div class="qpost-button-box">
-    <input class="qpost-button" type="button" onclick="wp_qpost('qpost-<?php echo $id; ?>');" value="post">
+    <input class="qpost-button" type="button" onclick="wp_qpost(this, 'qpost-<?php echo $id; ?>');" value="post">
   </div>
 </div>
 <?php
