@@ -1,4 +1,4 @@
-# Quick-post-widget lugin
+# Quick-post-widget plugin
 
 ![image.jpg](image.jpg)
 
