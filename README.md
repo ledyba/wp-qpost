@@ -2,7 +2,7 @@
 
 ![image.jpg](image.jpg)
 
-You can post texts from widget.
+You can post a text from this widget.
 
 # Prerequirement
 
