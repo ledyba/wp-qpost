@@ -58,7 +58,7 @@ class wp_qpost_plugin extends WP_Widget {
 ?>
 <div>
   <div>
-    <textarea class="qpost-textarea" id="qpost-<?php echo $id; ?>"></textarea>
+    <textarea class="qpost-textarea" id="qpost-<?php echo $id; ?>" autofocus="autofocus"></textarea>
   </div>
   <div class="qpost-button-box">
     <input class="qpost-button" type="button" onclick="wp_qpost(this, 'qpost-<?php echo $id; ?>');" value="post">
