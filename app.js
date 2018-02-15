@@ -14,7 +14,6 @@ window.wp_qpost = function(btn, form, force, event) {
     return false;
   }
   var post = new wp.api.models.Post({
-      title: new Date().toLocaleString(),
       content: text,
       status: 'publish'
     });
