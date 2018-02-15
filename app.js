@@ -5,8 +5,8 @@ wp.api.loadPromise.done(function() {
 
 window.wp_qpost = function(btn, form, force, event) {
   if(!force) {
-    console.log(event);
-    return false;
+    var isShortCut = (event.metaKey === true || event.ctrlKey === true) && event.keyCode === 13 /* Enter */;
+    if(!isShortCut) return false;
   }
   var text = form.value;
   if(text.length <= 0) {
