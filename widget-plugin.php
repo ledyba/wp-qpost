@@ -70,7 +70,7 @@ class wp_qpost_plugin extends WP_Widget {
     var btn = document.getElementById('qpost-button-<?php echo $id; ?>');
     var form = document.getElementById('qpost-form-<?php echo $id; ?>');
     btn.addEventListener('click', window.wp_qpost.bind(null, btn, form, true));
-    form.addEventListener('click', window.wp_qpost.bind(null, btn, form, false));
+    form.addEventListener('keydown', window.wp_qpost.bind(null, btn, form, false));
   }
   document.addEventListener('DOMContentLoaded', main);
 })();
