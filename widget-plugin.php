@@ -70,10 +70,12 @@ class wp_qpost_plugin extends WP_Widget {
     var btn = document.getElementById('qpost-button-<?php echo $id; ?>');
     var form = document.getElementById('qpost-form-<?php echo $id; ?>');
     btn.addEventListener('click', function(event) {
-      return wp_qpost(btn,form,true,event);
+      return wp_qpost(btn,form);
     });
     form.addEventListener('keydown', function(event) {
-      return wp_qpost(btn, form, false, event);
+      var isShortCut = (event.metaKey === true || event.ctrlKey === true) && event.keyCode === 13 /* Enter */;
+      if(!isShortCut) return false;
+      return wp_qpost(btn, form);
     });
   }
   document.addEventListener('DOMContentLoaded', main);
