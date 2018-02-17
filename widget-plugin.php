@@ -69,8 +69,12 @@ class wp_qpost_plugin extends WP_Widget {
   function main() {
     var btn = document.getElementById('qpost-button-<?php echo $id; ?>');
     var form = document.getElementById('qpost-form-<?php echo $id; ?>');
-    btn.addEventListener('click', window.wp_qpost.bind(null, btn, form, true));
-    form.addEventListener('keydown', window.wp_qpost.bind(null, btn, form, false));
+    btn.addEventListener('click', function(event) {
+      return wp_qpost(btn,form,true,event);
+    });
+    form.addEventListener('keydown', function(event) {
+      return wp_qpost(btn, form, false, event);
+    });
   }
   document.addEventListener('DOMContentLoaded', main);
 })();
