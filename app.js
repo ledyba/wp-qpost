@@ -17,6 +17,7 @@ window.wp_qpost = function(btn, form) {
   parent.removeChild(btn);
   var r = post.save();
   r.done(function(){
+    form.value='';
     location.reload();
   })
   .fail(function(){
