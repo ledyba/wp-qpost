@@ -1,11 +1,10 @@
 <?php
 /*
-Plugin Name: Quick Post Plugin
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+Plugin Name: wp-qpost
 Description: You can post a new post from this widget.
 Version: 1.0
 Author: PSI
-Author URI: http://ledyba.org/
+Author URI: https://7io.org/
 License: GPL3
 */
 
