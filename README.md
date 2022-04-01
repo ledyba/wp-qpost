@@ -10,5 +10,5 @@ You can post a text from this widget.
 
 # LICENSE
 
-GPL v3 or later.
+AGPL v3 or later.
 
